@@ -1,0 +1,24 @@
+TARGETNAME=ntop
+TARGETTYPE=PROGRAM
+
+UMTYPE=console
+UMENTRY=wmain
+
+USE_MSVCRT=1
+TEST_CODE=1
+
+C_DEFINES=$(C_DEFINES) -DUNICODE -D_UNICODE
+
+MSC_WARNING_LEVEL=/W3 /WX
+
+INCLUDES=                                         \
+    $(MINWIN_INTERNAL_PRIV_SDK_INC_PATH_L);       \
+    $(INCLUDES)                                   \
+
+
+TARGETLIBS=$(ONECORE_EXTERNAL_SDK_LIB_VPATH_L)\onecore.lib
+
+SOURCES=ntop.c              \
+        util.c              \
+        vi.c
+
