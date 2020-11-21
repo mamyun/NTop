@@ -23,11 +23,19 @@
 #include <assert.h>
 #include <conio.h>
 #include <pdh.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 #include "ntop.h"
 #include "util.h"
 #include "vi.h"
+
+//
+// Use swprintf instead of wsprintf for OneCore compat.
+//
+
+#undef  wsprintf
+#define wsprintf _stprintf
 
 #ifndef NTOP_VER
 #define NTOP_VER "dev"
@@ -69,9 +77,10 @@ static int ConPrintf(TCHAR *Fmt, ...)
 	return CharsWritten;
 }
 
-static void ConPutc(char c)
+static void ConPutc(TCHAR c)
 {
 	DWORD Dummy;
+
 	WriteConsole(ConsoleHandle, &c, 1, &Dummy, 0);
 }
 

@@ -18,6 +18,7 @@
 #include "vi.h"
 #include "ntop.h"
 #include "util.h"
+#include <stdlib.h>
 #include <conio.h>
 #include <stdio.h>
 #include <windows.h>
@@ -371,7 +372,7 @@ static void TryExec(TCHAR *Str)
 
 void ViInit(void)
 {
-	CurrentInputStr = xcalloc(DEFAULT_STR_SIZE, 1);
+	CurrentInputStr = xmalloc(DEFAULT_STR_SIZE * sizeof(*CurrentInputStr));
 }
 
 void ViEnableInput(TCHAR InitialKey)
